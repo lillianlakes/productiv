@@ -15,18 +15,24 @@ import EditableTodoList from "./EditableTodoList";
  * App -> TodoApp -> { TodoForm, EditableTodoList }
  */
 
-function TodoApp() {
+function TodoApp({ initialTodos }) {
+
+  const [todos, setTodos] = useState(initialTodos);
 
   /** add a new todo to list */
-  function create(newTodo) {
+  function create(todo) {
+    let newTodo = { ...todo, id: uuid() };
+    setTodos(todos => [...todos, newTodo]);
   }
 
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
+    setTodos(todos => todos.map(todo => todo.id === updatedTodo.id? updatedTodo : todo));
   }
 
   /** delete a todo by id */
   function remove(id) {
+    setTodos(todos => todos.filter(todo => todo.id !== id));
   }
 
   return (
@@ -34,16 +40,18 @@ function TodoApp() {
         <div className="row">
 
           <div className="col-md-6">
-            <EditableTodoList /> OR
-            <span className="text-muted">You have no todos.</span>
+            <h3>Todos</h3>
+            { todos.length > 0 ? <EditableTodoList todos = {todos} update = {update} remove = {remove} /> 
+            : <span className="text-muted">You have no todos.</span> }
           </div>
 
+          {/* (if no top todo, omit this whole section) */}
           <div className="col-md-6">
-            (if no top todo, omit this whole section)
-            <section className="mb-4">
+            { todos.length > 0 ? (<section className="mb-4">
               <h3>Top Todo</h3>
               <TopTodo />
-            </section>
+            </section>) : ("")}
+            
 
             <section>
               <h3 className="mb-3">Add Nü</h3>
