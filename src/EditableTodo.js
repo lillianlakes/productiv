@@ -34,29 +34,25 @@ function EditableTodo( { todo, update, remove }) {
 
   return (
       <div className="EditableTodo">
-
-                EITHER
-
-                <TodoForm />
-
-                OR
-
-                <div className="mb-3">
-                  <div className="float-right text-sm-right">
-                    <button
-                        className="EditableTodo-toggle btn-link btn btn-sm"
-                        onClick={toggleEdit}>
-                      Edit
-                    </button>
-                    <button
-                        className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-                        onClick={handleDelete}>
-                      Del
-                    </button>
-                  </div>
-                  <Todo />
-                </div>
-
+        {(editTodo ?
+          <TodoForm initialFormData={todo} handleSave={handleSave}/> 
+            : 
+          (<div className="mb-3">
+            <div className="float-right text-sm-right">
+              <button
+                  className="EditableTodo-toggle btn-link btn btn-sm"
+                  onClick={toggleEdit}>
+                Edit
+              </button>
+              <button
+                  className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+                  onClick={handleDelete}>
+                Del
+              </button>
+            </div>
+            <Todo todo={todo}/>
+          </div>)
+        )}
       </div>
   );
 }
