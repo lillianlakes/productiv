@@ -17,7 +17,7 @@ function TodoForm( { initialFormData, handleSave }) {
   /** Update form input. */
   function handleChange(evt) { 
       const { name, value } = evt.target;
-      setFormData(fData => ({
+      setFormData(() => ({
         ...formData,
         [name]: value
       }));
@@ -81,5 +81,7 @@ function TodoForm( { initialFormData, handleSave }) {
       </form>
   );
 }
+
+TodoForm.defaultProps = {initialFormData: {title:"", description:"", priority:2}};
 
 export default TodoForm;

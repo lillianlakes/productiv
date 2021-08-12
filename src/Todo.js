@@ -9,10 +9,13 @@ import React from "react";
  **/
 
 function Todo( {todo} ) {
+
+  const { title, priority, description} = todo;
+
   return (
       <div className="Todo">
-        <div><b>{todo.title}</b> <small>(priority: {todo.priority})</small></div>
-        <div><small>{todo.description}</small></div>
+        <div><b>{title}</b> <small>(priority: {priority})</small></div>
+        <div><small>{description}</small></div>
       </div>
   );
 }

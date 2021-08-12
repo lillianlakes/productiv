@@ -37,7 +37,7 @@ function EditableTodo( { todo, update, remove }) {
         {(editTodo ?
           <TodoForm initialFormData={todo} handleSave={handleSave}/> 
             : 
-          (<div className="mb-3">
+          <div className="mb-3">
             <div className="float-right text-sm-right">
               <button
                   className="EditableTodo-toggle btn-link btn btn-sm"
@@ -51,7 +51,7 @@ function EditableTodo( { todo, update, remove }) {
               </button>
             </div>
             <Todo todo={todo}/>
-          </div>)
+          </div>
         )}
       </div>
   );
